@@ -4,7 +4,6 @@
 import { useState } from "react";
 import { Mic, MicOff } from "lucide-react";
 import Vapi from "@vapi-ai/web";
-import axios from "axios";
 
 export default function Home() {
   const [isCallActive, setIsCallActive] = useState(false);
@@ -44,28 +43,6 @@ export default function Home() {
       vapi.stop();
       setIsCallActive(false);
       setIsAISpeaking(false);
-
-      // Call the API route to send LLM the rating request after the call ends
-      try {
-        const response = await axios.post("/api/rate", {
-          userName: userName,
-        });
-
-        // Destructure the response data to get userName, rating, and feedback
-        const { data } = response;
-        if (data.success) {
-          const { userName, rating, feedback } = data.data;
-
-          // Console log the values
-          console.log(`User: ${userName}`);
-          console.log(`Rating: ${rating}`);
-          console.log(`Feedback: ${feedback}`);
-        } else {
-          console.error("Failed to receive LLM rating response.");
-        }
-      } catch (error) {
-        console.error("Error submitting rating:", error);
-      }
     }
   };
 

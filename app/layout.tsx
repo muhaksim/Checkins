@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Checkins",
-  description: "Your AI-powered task manager and analytics tool",
+  description: "An AI that holds you accountable",
 };
 
 export default function RootLayout({
